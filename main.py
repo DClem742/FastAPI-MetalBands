@@ -11,7 +11,7 @@ app = FastAPI()
 
 @app.get("/")
 async def root():
-    return {"message": "Heavy F*cking Metal!!!!"}
+    return {"message": "Heavy F*cking Metal \m/"}
 
 
 def create_generic(model):
