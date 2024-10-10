@@ -6,4 +6,3 @@ class Band(Base, table=True):
     band_genre: str
     band_name: str
     band_album: str
-    band_members: str

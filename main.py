@@ -5,7 +5,6 @@ from db import get_session
 from models.bands import Band
 from models.sub_genres import Sub_Genre
 from models.albums import Album
-from models.members import Member
 
 app = FastAPI()
 
@@ -68,8 +67,3 @@ app.get("/albums/{item_id}")(read_generic(Album))
 app.put("/albums/{item_id}")(update_generic(Album))
 app.delete("/albums/{item_id}")(delete_generic(Album))
 
-# Member CRUD
-app.post("/members/")(create_generic(Member))
-app.get("/members/{item_id}")(read_generic(Member))
-app.put("/members/{item_id}")(update_generic(Member))
-app.delete("/members/{item_id}")(delete_generic(Member))

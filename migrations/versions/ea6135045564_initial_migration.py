@@ -1,8 +1,8 @@
 """Initial migration
 
-Revision ID: 154683250117
+Revision ID: ea6135045564
 Revises: 
-Create Date: 2024-10-09 15:33:14.622488
+Create Date: 2024-10-09 19:49:08.100266
 
 """
 from typing import Sequence, Union
@@ -13,7 +13,7 @@ import sqlmodel
 
 
 # revision identifiers, used by Alembic.
-revision: str = '154683250117'
+revision: str = 'ea6135045564'
 down_revision: Union[str, None] = None
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
@@ -36,17 +36,6 @@ def upgrade() -> None:
     sa.PrimaryKeyConstraint('id')
     )
     op.create_index(op.f('ix_bands_id'), 'bands', ['id'], unique=False)
-    op.create_table('members',
-    sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('name', sqlmodel.sql.sqltypes.AutoString(), nullable=False),
-    sa.Column('role', sqlmodel.sql.sqltypes.AutoString(), nullable=False),
-    sa.Column('join_date', sa.Integer(), nullable=False),
-    sa.Column('leave_date', sa.Integer(), nullable=False),
-    sa.Column('band_id', sa.Integer(), nullable=False),
-    sa.ForeignKeyConstraint(['band_id'], ['bands.id'], ),
-    sa.PrimaryKeyConstraint('id')
-    )
-    op.create_index(op.f('ix_members_id'), 'members', ['id'], unique=False)
     op.create_table('sub_genres',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('type', sqlmodel.sql.sqltypes.AutoString(), nullable=False),
@@ -55,7 +44,7 @@ def upgrade() -> None:
     sa.PrimaryKeyConstraint('id')
     )
     op.create_index(op.f('ix_sub_genres_id'), 'sub_genres', ['id'], unique=False)
-    
+   
     # ### end Alembic commands ###
 
 
@@ -64,8 +53,6 @@ def downgrade() -> None:
     
     op.drop_index(op.f('ix_sub_genres_id'), table_name='sub_genres')
     op.drop_table('sub_genres')
-    op.drop_index(op.f('ix_members_id'), table_name='members')
-    op.drop_table('members')
     op.drop_index(op.f('ix_bands_id'), table_name='bands')
     op.drop_table('bands')
     op.drop_index(op.f('ix_albums_id'), table_name='albums')

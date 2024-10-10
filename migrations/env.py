@@ -11,7 +11,6 @@ from db import DATABASE_URL
 from models.bands import Band
 from models.sub_genres import Sub_Genre
 from models.albums import Album
-from models.members import Member
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
 config = context.config
